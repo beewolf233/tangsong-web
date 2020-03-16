@@ -1,0 +1,74 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+
+<view class="home-container">
+    <view>
+      <view class="header flex-one">
+        <image class="header-hometitle" src="../../assets/img/home_header_title@3x.png"  mode="heightFix"></image>
+        <span class="app-icon app-icon-search"></span>
+      </view>
+      <view class="app-container20">
+        <view class="home-banner">
+          <!-- <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+            <van-swipe-item
+              v-for="(item, index) in banner"
+              :key="index">
+              <image :src="item.url" alt=""></image>
+            </van-swipe-item>
+          </van-swipe> -->
+          <!-- <image src="../../assets/img/banner@3x.png" alt=""> -->
+        </view>
+        <!-- 每日推荐 -->
+        <view class="app-title flexone">
+          <image src="../../assets/img/dayintro@3x.png" mode="heightFix"></image>
+        </view>
+        <!-- <view class="dayinfo-box"
+          v-for="(item, index) in poemDay" 
+          @click="goPoemDetail(item)"
+          :key="index">
+            <view class="dayinfo-one">
+              <view class="dayinfo-title">{{item.title}}</view>
+              <view class="dayinfo-user">{{item.auther}}</view>
+            </view>
+            <view class="poem-line">
+            </view>
+            <view class="dayinfo-two">
+              <view class="dayinfo-content text-overflow2">{{item.content}}</view>
+              <view class="dayinfo-go">
+                <image src="../../assets/img/readpic@3x.png" alt=""></image>
+              </view>
+            </view>
+        </view> -->
+        <!-- 古诗推荐 -->
+        <view class="app-title flexone">
+          <image src="../../assets/img/poems@3x.png"  mode="heightFix"></image>
+          <view class="at-gomore"><nuxt-link :to="{name: 'poemList'}">更多></nuxt-link></view>
+        </view>
+        <!-- <PoemItems :poemList="poemintro"/> -->
+        <!-- 人间词话 -->
+         <view class="app-title">
+          <image src="../../assets/img/qihua@3x.png"  mode="heightFix"></image>
+        </view>
+        <view class="qihua">
+          <view class="qihua-title">特别企划</view>
+          <view class="qihua-info">各种对诗歌的想象从这里开始</view>
+          <view class="qihua-pic">
+            <image src="../../assets/img/qihua1@3x.png" alt=""></image>
+            <image src="../../assets/img/qihua2@3x.png" alt=""></image>
+            <image src="../../assets/img/qihua3@3x.png" alt=""></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

@@ -1,0 +1,7 @@
+facePay/node_modules/*
+visualization/.svn/*
+visualization/node_modules/*
+.DS_Store
+node_modules/
+dist/
+*.zip

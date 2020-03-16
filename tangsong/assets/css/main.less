@@ -1,0 +1,248 @@
+/**
+ * 常量
+ */
+ @grayColor: #787878;
+ @grayColorText: #BCBCBC;
+ @grayColorBg: #BCBCBC;
+ @blackColor: #373737;;
+ @primaryColor: #144a74;
+ @primaryColortext: #144a74;
+ @primaryColorBg: #144a74;
+ @goldColor: #d0bd92;
+ @yellowColor: #ff9000;
+ @dividerColor: #f4f4f4;
+ @bodyBackgroundColor: #f8f8f8; /*body背景色*/
+ @wrongColor: #F5222D;
+ @fontSize8: 8px;
+ @fontSize13: 13px;
+ @fontSize16: 16px;
+ @fontSize19: 19px;
+ @fontSize21: 21px;
+ @fontSize30: 30px;
+
+//  @fontFamily: '苹方', 'Helvetica Neue', 'Helvetica', '黑体', '宋体', 'Arial',
+//      'Times New Roman', 'Tahoma';
+@fontFamily: 'PingFangSC-Regular', 'sans-serif', 'Helvetica Neue', 'Helvetica';
+
+ /**
+  * 单行文字省略  注意: width必须为非auto值
+  */
+ .txtOverflow() {
+     text-overflow: ellipsis;
+     overflow: hidden;
+     white-space: nowrap;
+ }
+ .text-overflow{
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .text-overflow2{
+    overflow: hidden;      
+    text-overflow: ellipsis;      
+    display: -webkit-box;     
+    -webkit-line-clamp: 2;    
+    -webkit-box-orient: vertical;
+  }
+ .flexOne(){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ }
+
+ /*初始化页面的布局UI规则*/
+ .initUIAppearance() {
+     html,
+     body,
+     div,
+     p,
+     ul,
+     li,
+     dl,
+     dt,
+     dd,
+     h1,
+     h2,
+     h3,
+     h4,
+     h5,
+     h6,
+     form,
+     input,
+     select,
+     button,
+     textarea,
+     iframe,
+     table,
+     th,
+     td,
+     * {
+         margin: 0;
+         padding: 0;
+     }
+     img {
+         border: 0 none;
+         vertical-align: top;
+     }
+     ul,
+     li {
+         border: 0 none;
+         list-style-type: none;
+     }
+     div {
+         position: relative;
+     }
+     button {
+         cursor: pointer;
+     }
+     button:focus {
+         outline: none;
+     }
+     i,
+     em,
+     cite {
+         font-style: normal;
+     }
+     a,
+     a:link {
+         text-decoration: none;
+     }
+     a:hover {
+         text-decoration: none;
+     }
+     a:focus {
+         outline: none;
+     }
+     html,
+     body {
+         width: 100%;
+         height: 100%;
+        //  font-weight: 300;
+         color:  @blackColor;
+         background-color: @bodyBackgroundColor;
+        //  font-family: @fontFamily;
+        //  input {
+        //      font-weight: 300;
+        //  }
+        //  textarea {
+        //      font-weight: 300;
+        //  }
+     }
+     input,
+     select,
+     option,
+     textarea {
+        height: auto;
+        outline: none;
+        resize: none;
+        vertical-align: bottom;
+        line-height: normal;
+        border: 0;  // 去除未选中状态边框
+        background-color: rgba(0, 0, 0, 0);// 透明背景
+        //  font-family: @fontFamily;
+     }
+     textarea:focus {
+         outline: none;
+     }
+     input[type='text'],
+     input[type='number'],
+     input[type='tel'],
+     textarea,
+     select,
+     a {
+         -webkit-tap-highlight-color: transparent;
+     }
+     area {
+         outline: none;
+         cursor: pointer;
+     }
+     /*去掉IE浏览器下input的X 和 密码框的明文显示按钮*/
+     input::-ms-clear {
+         display: none;
+     }
+     input::-ms-reveal {
+         display: none;
+     }
+     ::-ms-clear {
+         display: none;
+     }
+     ::-ms-reveal {
+         display: none;
+     }
+     ::-webkit-input-placeholder {
+        color:  @grayColorText;
+     }
+     ::-moz-placeholder {
+        color:  @grayColorText;
+     }
+     ::-moz-placeholder {
+        color:  @grayColorText;
+     }
+     .weui-btn:after {
+        border: none !important;
+     }
+ }
+
+ .flex-one{
+     display: flex;
+     align-items: center;
+ }
+ html, body{
+    width: 100%;
+    //  background-color: #fffef8;
+    //  background-image: url(~assets/img/texture.png);
+    background-color: #fbfbfb;
+    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+ }
+//  #_nuxt{
+//      height: 100%;
+//  }
+ .app-icon{
+     width: 24px;
+     height: 24px;
+     display: inline-block;
+ }
+ .app-icon-search{
+     background: url(~assets/img/icon_search@3x.png) no-repeat center center;
+     background-size: contain;
+ }
+ .app-container20{
+     padding: 0 16px;
+     box-sizing: border-box;
+ }
+ .app-title{
+     height: 50px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     img{
+         height: 20px;
+         opacity: .98;
+     }
+     .at-gomore{
+        color: @goldColor;
+        font-size: 14px;
+        font-weight: bold;
+        a{
+            color: @goldColor;
+        }
+     }
+
+ }
+ .poem-line{
+     width: 100%;
+     height: 2px;
+    //  border-top: 1px solid @primaryColor;
+    //  border-bottom: 1px solid @primaryColor;
+    //  border-top: 1px solid @goldColor;
+    //  border-bottom: 1px solid @goldColor;
+     background: #d0bd92;
+ }
+ .app-infinite-loading{
+     .app-infinite-nomore{
+         margin-top: 10px;
+         display: block;
+     }
+ }

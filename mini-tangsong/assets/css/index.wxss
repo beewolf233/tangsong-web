@@ -1,0 +1,68 @@
+/**
+ * 常量
+ */
+/*body背景色*/
+/**
+  * 单行文字省略  注意: width必须为非auto值
+  */
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.text-overflow2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+/*初始化页面的布局UI规则*/
+.flex-one {
+  display: flex;
+  align-items: center;
+}
+html,
+body {
+  width: 100%;
+  background-color: #fbfbfb;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;
+}
+.app-icon {
+  width: 48rpx;
+  height: 48rpx;
+  display: inline-block;
+}
+.app-container20 {
+  padding: 0 32rpx;
+  box-sizing: border-box;
+}
+.app-title {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app-title image {
+  width: auto;
+  height: 40rpx;
+  opacity: .98;
+}
+.app-title .at-gomore {
+  color: #d0bd92;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.app-title .at-gomore a {
+  color: #d0bd92;
+}
+.poem-line {
+  width: 100%;
+  height: 4rpx;
+  background: #d0bd92;
+}
+.app-infinite-loading .app-infinite-nomore {
+  margin-top: 20rpx;
+  display: block;
+}
