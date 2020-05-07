@@ -89,6 +89,22 @@
             :autosize="{ minRows: 4, maxRows: 6}"
           />
         </el-form-item>
+        <el-form-item label="繁文标题">
+          <el-input v-model="form.traditionTitle" />
+        </el-form-item>
+        <el-form-item label="繁文作者">
+          <el-input v-model="form.traditionAuther" />
+        </el-form-item>
+        <el-form-item label="繁文书名">
+          <el-input v-model="form.traditionBook" />
+        </el-form-item>
+        <el-form-item label="繁文内容">
+          <el-input
+            v-model="form.traditionContent"
+            type="textarea"
+            :autosize="{ minRows: 4, maxRows: 6}"
+          />
+        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -128,7 +144,11 @@ export default {
         content: '',
         book: '',
         auther: '',
-        descript: ''
+        descript: '',
+        traditionTitle: '',
+        traditionContent: '',
+        traditionBook: '',
+        traditionAuther: ''
       }
     }
   },
@@ -160,7 +180,11 @@ export default {
         content: item.content,
         book: item.book,
         auther: item.auther,
-        descript: item.descript
+        descript: item.descript,
+        traditionTitle: item.traditionTitle,
+        traditionContent: item.traditionContent,
+        traditionBook: item.traditionBook,
+        traditionAuther: item.traditionAuther
       }
       this.dialogVisible = true
     },
@@ -172,7 +196,11 @@ export default {
         content: '',
         book: '',
         auther: '',
-        descript: ''
+        descript: '',
+        traditionTitle: '',
+        traditionContent: '',
+        traditionBook: '',
+        traditionAuther: ''
       }
       this.dialogVisible = true
     },

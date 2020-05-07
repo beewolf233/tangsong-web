@@ -47,7 +47,9 @@ class FileUploadService {
             const name = fileName.substring(0, fileName.lastIndexOf('.'));
             let index = 1;
             while(true){
-                fileName = `${name}(${index})${ext}`
+                // ${ext}
+                const fileExt = '.' + file.name.split('.').pop();
+                fileName = `${name}(${index})${fileExt}`
                 filePath = path.join(this.uploadDir, fileName)
                 if (fs.existsSync(filePath)) {
                     index += 1

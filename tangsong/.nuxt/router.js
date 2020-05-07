@@ -3,9 +3,10 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _4f922bb1 = () => interopDefault(import('../pages/poemdetail.vue' /* webpackChunkName: "pages/poemdetail" */))
-const _787c28c4 = () => interopDefault(import('../pages/poemList.vue' /* webpackChunkName: "pages/poemList" */))
-const _ebe63aae = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _30840160 = () => interopDefault(import('../pages/poemdetail.vue' /* webpackChunkName: "pages/poemdetail" */))
+const _1d3b610d = () => interopDefault(import('../pages/poemList.vue' /* webpackChunkName: "pages/poemList" */))
+const _0a820120 = () => interopDefault(import('../pages/poemwrite.vue' /* webpackChunkName: "pages/poemwrite" */))
+const _b26c08cc = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
 const emptyFn = () => {}
@@ -25,15 +26,19 @@ export const routerOptions = {
 
   routes: [{
     path: "/poemdetail",
-    component: _4f922bb1,
+    component: _30840160,
     name: "poemdetail"
   }, {
     path: "/poemList",
-    component: _787c28c4,
+    component: _1d3b610d,
     name: "poemList"
   }, {
+    path: "/poemwrite",
+    component: _0a820120,
+    name: "poemwrite"
+  }, {
     path: "/",
-    component: _ebe63aae,
+    component: _b26c08cc,
     name: "index"
   }],
 

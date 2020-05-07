@@ -17,8 +17,8 @@ module.exports = {
     },
     // 添加
     async add(ctx, next) {
-        const { title, content, auther, descript, book } = ctx.request.body;
-        if (!title || !content || !auther || !descript) {
+        const { title, content, auther, descript, book, traditionTitle, traditionContent, traditionAuther, traditionBook, isFan = 0} = ctx.request.body;
+        if (!title || !content || !auther || !descript || !traditionContent) {
             throw new InvalidQueryError();
         };
         let errors = await PoemValidator(ctx);
@@ -32,7 +32,8 @@ module.exports = {
             ctx.code = 1003;
         } else {
             const result = await poemService.save({
-                title, content, auther, descript, book });
+                title, content, auther, descript, book,
+                traditionTitle, traditionContent, traditionAuther, traditionBook, isFan});
             ctx.result = result;
             ctx.msg = '添加成功！',
             ctx.code = 200;
@@ -57,8 +58,8 @@ module.exports = {
     },
     // 编辑
     async edit(ctx, next) {
-        const { title, content, auther, descript, book, id } = ctx.request.body;
-        if (!title || !content || !auther || !descript || !id) {
+        const { title, content, auther, descript, book, id, traditionTitle = '', traditionContent = '', traditionAuther = '', traditionBook = '',isFan = 0 } = ctx.request.body;
+        if (!title || !content || !auther || !descript || !id || !traditionContent) {
             throw new InvalidQueryError();
         };
         let errors = await PoemValidator(ctx);
@@ -67,10 +68,10 @@ module.exports = {
             ctx.code = 1003;
             return next();
         };
-       
         const result = await poemService.update({'_id': id},
         {$set:{
-            title, content, auther, descript, book }});
+            title, content, auther, descript, book,
+            traditionTitle, traditionContent, traditionAuther, traditionBook, isFan}});
         ctx.result = result;
         ctx.msg = '修改诗歌成功！',
         ctx.code = 200;

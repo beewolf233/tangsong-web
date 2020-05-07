@@ -6,5 +6,8 @@ export default {
   apiLogin: '/api/login',
   apiRegister: '/api/register',
   apiSubmitBanner: '/api/sumbitbanner',
-  apiGetBanner: '/api/getbanner'
+  apiGetBanner: '/api/getbanner',
+  apiSumbitwenzi: '/api/sumbitwenzi',
+  apiGetwenzi: '/api/getwenzi',
+  apiWenziDel: '/api/deletewenzi'
 }

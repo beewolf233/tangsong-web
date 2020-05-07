@@ -17,7 +17,26 @@ const poemSchema = new Schema({
         type: String,
         required: true
     },
+    traditionTitle: {
+        type: String,
+        required: true
+    },
+    traditionContent: {
+        type: String,
+        required: true
+    },
+    traditionBook: {
+        type: String
+    },
+    traditionAuther: {
+        type: String,
+        required: true
+    },
     descript: {
+        type: String,
+        required: true
+    },
+    isFan: {
         type: String,
         required: true
     }

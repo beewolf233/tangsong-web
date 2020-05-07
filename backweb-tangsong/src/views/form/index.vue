@@ -183,7 +183,6 @@ export default {
       return this.$confirm(`确定移除 ${file.name}？`)
     },
     handleSuccess(response, file, fileList) {
-      console.log(response)
       const { recode, msg } = response
       if (recode === 200) {
         console.log('success')

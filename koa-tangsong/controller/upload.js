@@ -7,4 +7,10 @@ module.exports = {
         imgUploadService.execute(ctx);
         return next();
     },
+    async uploadWenziImg (ctx, next) {
+        const uploadPath = `/tangsongimg/wenzi`;
+        const imgUploadService = new ImgUploadService(uploadPath, false);
+        imgUploadService.execute(ctx);
+        return next();
+    },
 };

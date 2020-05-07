@@ -5,3 +5,4 @@ visualization/node_modules/*
 node_modules/
 dist/
 *.zip
+koa-tangsong/public/tangsongimg

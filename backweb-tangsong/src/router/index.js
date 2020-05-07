@@ -88,7 +88,18 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/wenzi',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Wenzi',
+        component: () => import('@/views/wenzi/index'),
+        meta: { title: '千字文', icon: 'form' }
+      }
+    ]
+  },
   // {
   //   path: '/nested',
   //   component: Layout,
