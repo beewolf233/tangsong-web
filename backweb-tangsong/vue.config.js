@@ -39,6 +39,7 @@ module.exports = {
     proxy: {
       '/api': { // 这里是公共部分，在调用接口时后面接不相同的部分，/api就相当于http://192.168.0.199:8926/api这一段
         target: 'http://localhost:1008/', // 这里写的是访问接口的域名和端口号
+        // target: 'http://47.93.148.144:27020',
         changeOrigin: true, // 必须加上这个才能跨域请求
         pathRewrite: { // 重命名
           '^/apis': ''
@@ -46,6 +47,7 @@ module.exports = {
       },
       '/tangsongimg': {
         target: 'http://localhost:1008/tangsongimg', // 这里写的是访问接口的域名和端口号
+        // target: 'http://47.93.148.144:27020',
         changeOrigin: true, // 必须加上这个才能跨域请求
         pathRewrite: { // 重命名
           '^/tangsongimg': ''

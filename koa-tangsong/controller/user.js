@@ -7,10 +7,12 @@ module.exports = {
     // 登陆
     async login(ctx, next) {
         const { username, password } = ctx.request.body;
+        console.log(username, password, 34444)
         if (!username || !password) {
             throw new InvalidQueryError()
         }
         const user = await userService.findOne({ username });
+        console.log(user, 9999);
         if (!user) {
             ctx.error = '用户不存在';
             ctx.code = 1003;

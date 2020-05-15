@@ -6,9 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server --exec babel-node --presets @babel/env",
-    "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js --exec babel-node --presets @babel/env",
-    "generate": "nuxt generate"
+    "build": "nuxt build && npm start",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "prd": "pm2 start cross-env NODE_ENV=development nodemon server/index.js --watch server --exec babel-node --presets @babel/env"
   },
   "config": {
     "nuxt": {
