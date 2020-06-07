@@ -1,0 +1,437 @@
+<style lang="less">
+.poemwrite-container{
+  height: 100%;
+  font-weight: 300;
+  .poemwrite-box{
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    // position: relative;
+    background: #fff;
+    box-sizing: border-box;
+    padding-bottom: 600rpx;
+    .poemwrite-innerbox {
+      width: 100%;
+      margin-bottom: 56prpx;
+      // height: calc(100% - 560rpx);
+      position: relative;
+      // padding-bottom: 560rpx;
+      overflow: auto;
+      padding: 40rpx;
+      box-sizing: border-box;
+      writing-mode: vertical-rl;/*从左向右 从右向左是 writing-mode: vertical-rl;*/  
+      writing-mode: tb-lr;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/  
+    }
+    .poem-titleauther{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .poem-title{
+      padding-top: 40rpx;
+      font-size: 40rpx;
+      text-align: center;
+      font-weight: bold;
+    }
+    .poem-autherbox{
+      // margin-top: 60rpx;
+      font-size: 32rpx;
+      text-align: center;
+      margin-bottom: 60rpx;
+      display: flex;
+      align-items: center;
+      .poem-auther{
+        // margin-left: 20rpx;
+        color: #144a74;
+        font-weight: bold;
+      }
+    }
+    .poem-content{
+      font-size: 44rpx;
+      letter-spacing: 5rpx;
+      line-height: 68rpx;
+      // width: 686rpx;
+      margin: 0 auto;
+      // border-top: 2rpx solid #d0bd92;
+      // border-bottom: 2rpx solid #d0bd92;
+      padding: 60rpx 40rpx;
+      position: relative;
+     .poem-content1{
+       color: #999;
+     }
+     .poem-content2{
+       position: absolute;
+       top: 60rpx;
+       right: 40rpx;
+       bottom: 60rpx;
+       color: black;
+      //  font-weight: bold;
+     }
+    }
+    .pome-des{
+      font-size: 18rpx;
+      line-height: 68rpx;
+      width: 686rpx;
+      margin: 0 auto;
+      padding: 40rpx;
+      margin-top: 20rpx;
+      span{
+        // color: #144a74;
+        font-weight: bold;
+        margin-right: 15rpx;
+      }
+    }
+  }
+  .poemwrite-wenzi-box{
+    position: absolute;
+    height: 600rpx;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f5f1e6;
+    background-image: url(https://www.songpoem.cn/tangsongimg/icon/texture.png);
+    .poemwreite-tip{
+      margin-top: 100rpx;
+      text-align: center;
+      font-size: 36rpx;
+    }
+    .poemwreite-repeat{
+      margin-top: 40rpx;
+      font-size: 48rpx;
+      background-color: #d0bd92;
+      display: inline-block;
+      border-bottom: 1px solid #d0bd92;
+      padding: 10rpx 30rpx;
+      border-radius: 8rpx;
+    }
+    .poemwrite-wenzi-inner{
+      width: 500rpx;
+      height: 500rpx;
+      border: 2rpx solid #d0bd92;
+      box-sizing: border-box;
+      margin: 0 auto;
+      margin-top: 40rpx;
+      position: relative;
+      .poemwrite-wenzi-back{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        opacity: .8;
+      }
+      .poemwrite-wenzi-bihua{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 2;
+        &.notwrite{
+          display: none;
+        }
+        &.writed{
+          display: block;
+          opacity: 1;
+        }
+        &.writing{
+          display: block;
+          opacity: .4;
+        }
+      }
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .poem-trangle{
+    position: fixed;
+    bottom: 60rpx;
+    right: 60rpx;
+    .poem-trangle-btn{
+      width: 60rpx;
+      height: 60rpx;
+      border-radius: 50%;
+      // background: url(~assets/img/icon_gonext.png) no-repeat center center #144a74;
+      background-size: 32rpx 32rpx; 
+      color: #d0bd92;
+      font-size: 12rpx;
+      margin: 20rpx 0;
+    }
+    .poem-trangle-up{
+      transform:rotate(180deg);
+    }
+  }
+}
+</style>
+<template>
+  <view class="poemwrite-container">
+    <view wx:if="{{!poem}}">
+      诗歌不存在
+    </view>
+    <view wx:else class="poemwrite-box">
+      <view class="poemwrite-innerbox">
+        <view class="poem-titleauther">
+          <view class="poem-title">
+            {{ poem.traditionTitle }}
+          </view>
+          <view class="poem-autherbox">
+            <view>【{{ poem.traditionBook }}】</view>
+            <view class="poem-auther">{{ poem.traditionAuther}}</view>
+          </view>
+        </view>
+        <view class="poem-content">
+          <view class="poem-content1">{{ poem.traditionContent }}</view>
+          <view class="poem-content2">{{ traditionContentTwo }}</view>
+        </view>
+      </view>
+      <view class="poemwrite-wenzi-box">
+        <view class="poemwrite-wenzi-inner" wx:if="{{!poemend}}">
+          <view wx:if="wenziNow" bindtouchend="goNextBihua">
+            <image
+              wx:if="{{imgpre}}"
+              src="{{imgpre + wenziNow.backpic[0].url}}"  class="poemwrite-wenzi-back"></image>
+            <image
+              wx:if="{{imgpre}}"
+              src="{{imgpre + item.url }}"
+              class="poemwrite-wenzi-bihua {{writeIndex<index?'notwrite':''}} {{writeIndex===index?'writing':''}} {{writeIndex>index?'writed':''}}"
+              wx:for="{{ wenziNow.pic }}" wx:for-index="index" wx:key="index"
+            ></image>
+          </view>
+        </view>
+        <div class="poemwreite-tip" wx:if="{{poemend}}">
+          <div>诗歌写完了，佩服佩服!!</div>
+          <div>重写一遍？</div>
+          <div class="poemwreite-repeat" @click="repeatPoem()">确定</div>
+        </div>
+      </view>
+    </view>
+    
+    <view class="poem-trangle" v-if="poem&&poemState==='list'">
+      <view class="poem-trangle-btn poem-trangle-up" @click="getPoem('up')">
+      </view>
+      <view class="poem-trangle-btn poem-trangle-next" @click="getPoem('down')">
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from '@wepy/core';
+  import { mapState } from '@wepy/redux';
+  import store from '../store';
+  import {
+    post
+  } from '@/utils/request.js';
+  wepy.page({
+    store,
+    hooks: {
+      // Page 级别 hook, 只对当前 Page 的 setData 生效。
+    },
+    data: {
+      params: {},
+      apiName: '',
+      startIndex: 1,
+      nextIndex: 2,
+      wenziNow: null,
+      wenziNext: null,
+      writeIndex: 0,
+      poem: {},
+      poemend: false
+    },
+
+    computed: {
+       ...mapState([ 'imgbase' ]),
+      imgpre() {
+        console.log(this.imgbase.prehttp, 23344)
+        return this.imgbase.prehttp
+      },
+      traditionContentTwo() {
+        if (this.poem && this.poem.traditionContent) {
+          return this.poem.traditionContent.substring(0, this.startIndex)
+        }
+      }
+    },
+
+    methods: {
+      goNextBihua() {
+        if (this.poemend) {
+          return;
+        }
+        this.writeIndex = this.writeIndex + 1;
+        if (this.writeIndex >= this.wenziNow.pic.length) {
+          console.log('该下个字了');
+          if (this.wenziNext) {
+            this.writeIndex = 0;
+            this.wenziNow = this.wenziNext;
+            this.startIndex = this.nextIndex;
+            this.nextIndex = this.nextIndex + 1;
+            this.checkWenziNext()
+          } else {
+            this.poemend = true;
+            this.startIndex = this.poem.traditionContent.length;
+          }
+        }
+      },
+      
+      checkWenzi() {
+        let getStr = this.poem.traditionContent[this.startIndex - 1];
+        let reg = /^[\u4E00-\u9FA5\uF900-\uFA2D]+$/g;
+        if (reg.test(getStr)) {
+          this.getWenzi(getStr, (data) => {
+            this.wenziNow = data;
+          });
+          this.checkWenziNext();
+        } else {
+          this.checkWenziNext('fugai');
+        }
+      },
+
+      checkWenziNext(state) {
+        let nextIndex = this.nextIndex
+        let getStr = this.poem.traditionContent[nextIndex - 1]
+        let reg = /^[\u4E00-\u9FA5\uF900-\uFA2D]+$/g
+        if (reg.test(getStr)) {
+          // 是中文
+          this.getWenzi(getStr, (data) => {
+            if (state === 'fugai') {
+              this.wenziNow = data
+              this.startIndex = nextIndex
+              this.nextIndex = nextIndex + 1
+              this.checkWenziNext()
+            } else {
+              this.nextIndex = nextIndex
+              this.wenziNext = data
+            }
+          })
+        } else {
+          console.log(this.poem.traditionContent.length, this.nextIndex)
+          if (this.poem.traditionContent.length <= this.nextIndex) {
+            console.log('诗歌结束了')
+            this.wenziNext = null
+          } else {
+            this.nextIndex = this.nextIndex + 1
+            this.checkWenziNext()
+          }
+        }
+      },
+      repeatPoem() {
+        this.startIndex = 1;
+        this.nextIndex =  2;
+        this.wenziNow = null;
+        this.wenziNext = null;
+        this.writeIndex =  0;
+        this.poemend = false;
+        if (this.poem) {
+          this.checkWenzi();
+        }
+      },
+      getWenzi(wenzi, callback) {
+        post(this.$app.$options.globalData.preUrl + '/wenziSearch', {
+          traditionname: wenzi
+        })
+        .then((res) => {
+          let {recode, data, msg} = res
+          if (recode === 200) {
+            if (callback) {
+              data.pic = JSON.parse(data.pic)
+              data.backpic = JSON.parse(data.backpic)
+              callback(data)
+            }
+          } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+        .catch((e) => {
+        })
+      },
+      
+      getPoemInfo() {
+        post(this.$app.$options.globalData.preUrl + this.apiName, this.params)
+        .then((res) => {
+          let {recode, data, msg} = res
+          if (recode === 200) {
+            this.poem = data
+            this.checkWenzi()
+          } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+        .catch((e) => {
+        })
+      },
+
+      getPoem(state) {
+        let pageNum = this.params.pageNum
+        let pageNumBefore = this.params.pageNum
+        if (state === 'up') {
+          pageNum--
+          if (pageNum === 0) {
+            wx.showToast({
+              title: '已经是第一个了',
+              icon: 'none',
+              duration: 2000
+            })
+            return
+          }
+        } else {
+          if (pageNum === this.total) {
+            wx.showToast({
+              title: '已经是最后一个了',
+              icon: 'none',
+              duration: 2000
+            })
+            return
+          }
+          pageNum++
+        }
+        this.params.pageNum = pageNum
+        wx.showLoading({
+          title: '加载中...'
+        })
+        // this.params= Object.assign({}, this.params, pageNum);
+        this.$axios.post(this.apiName, this.params)
+        .then((res) => {
+          wx.hideLoading()
+          let {recode, data, msg} = res
+          if (recode === 200) {
+            this.poem = data.list[0]
+            this.total = data.count
+          } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none',
+              duration: 2000
+            })
+            this.params.pageNum = pageNumBefore
+          }
+        })
+        .catch((e) => {
+          wx.hideLoading()
+          // error({ statusCode: 404, message: 'not found' })
+        })
+      }
+    },
+
+    created () {
+      this.apiName = '/poemdetail'
+      this.params = {
+        id: '5e6ce19af9ee7d13e90dff7b'
+      };
+      this.getPoemInfo();
+
+    }
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: '繁文詞貼',
+    disableScroll: true
+}
+</config>

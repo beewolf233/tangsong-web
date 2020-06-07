@@ -13,4 +13,5 @@ tangsong/.nuxt
 tangsong/.nuxt/*
 /tangsong/.nuxt/*
 .nuxt
+proxy.js
 

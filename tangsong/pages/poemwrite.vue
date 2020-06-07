@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="poemwrite-wenzi-box">
-        <div class="poemwrite-wenzi-inner">
+        <div class="poemwrite-wenzi-inner" v-if="!poemend">
           <div v-if="wenziNow" @touchend="goNextBihua">
             <img :src="wenziNow.backpic[0].url"  class="poemwrite-wenzi-back">
             <img 
@@ -31,7 +31,11 @@
               :key="index"
             >
           </div>
-          
+        </div>
+        <div class="poemwreite-tip" v-if="poemend">
+          <div>诗歌写完了，佩服佩服!!</div>
+          <div>重写一遍？</div>
+          <div class="poemwreite-repeat" @click="repeatPoem()">确定</div>
         </div>
       </div>
     </div>
@@ -127,16 +131,23 @@ export default {
   },
   methods: {
     goNextBihua() {
+      if (this.poemend) {
+        return;
+      }
       this.writeIndex = this.writeIndex + 1;
       if (this.writeIndex >= this.wenziNow.pic.length) {
-         console.log('该下个字了')
-         if (this.wenziNext) {
-           this.writeIndex = 0;
-           this.wenziNow = this.wenziNext;
-           this.startIndex = this.nextIndex;
-           this.nextIndex = this.nextIndex + 1;
-           this.checkWenziNext();
-         }
+        console.log('该下个字了')
+        if (this.wenziNext) {
+          this.writeIndex = 0;
+          this.wenziNow = this.wenziNext;
+          this.startIndex = this.nextIndex;
+          this.nextIndex = this.nextIndex + 1;
+          this.checkWenziNext();
+        } else {
+          this.poemend = true;
+          this.startIndex = this.poem.traditionContent.length;
+        }
+        // this.poemend = true;)
       }
     },
       checkWenzi() { 
@@ -167,18 +178,27 @@ export default {
                 this.nextIndex = nextIndex;
                 this.wenziNext = data;
             }
-            
           });
         } else {
           console.log(this.poem.traditionContent.length, this.nextIndex)
           if (this.poem.traditionContent.length <= this.nextIndex) {
             console.log('诗歌结束了')
             this.wenziNext = null;
-            this.poemend = true;
           } else {
             this.nextIndex = this.nextIndex + 1;
             this.checkWenziNext();
           }
+        }
+      },
+      repeatPoem() {
+        this.startIndex = 1;
+        this.nextIndex =  2;
+        this.wenziNow = null;
+        this.wenziNext = null;
+        this.writeIndex =  0;
+        this.poemend = false;
+        if (this.poem) {
+          this.checkWenzi();
         }
       },
       getWenzi(wenzi, callback) {
@@ -330,6 +350,20 @@ export default {
     bottom: 0;
     background-color: #f5f1e6;
     background-image: url(~assets/img/texture.png);
+    .poemwreite-tip{
+      margin-top: 50px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .poemwreite-repeat{
+      margin-top: 20px;
+      font-size: 24px;
+      background-color: @goldColor;
+      display: inline-block;
+      border-bottom: 1px solid @goldColor;
+      padding: 5px 15px;
+      border-radius: 4px;
+    }
     .poemwrite-wenzi-inner{
       width: 240px;
       height: 240px;

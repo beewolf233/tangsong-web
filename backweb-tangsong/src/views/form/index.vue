@@ -171,7 +171,10 @@ export default {
       console.log(file)
     },
     handleRemove(file, fileList) {
-      console.log(file, fileList)
+      const findIndex = this.fileList.findIndex(item => {
+        return item.name === file.name
+      })
+      this.fileList.splice(findIndex, 1)
     },
     handlePreview(file) {
       console.log(file)

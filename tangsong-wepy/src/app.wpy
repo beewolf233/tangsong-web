@@ -1,0 +1,63 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+import wepy from '@wepy/core';
+import eventHub from './common/eventHub';
+import wepyRedux from '@wepy/redux';
+wepy.use(wepyRedux);
+import store from './store';
+import { SETIMGHTTP } from './store/types/imgbase';
+// 引进传入域名
+import { apphttp } from './utils/apphttp'
+wepy.app({
+  store,
+  hooks: {
+    // App 级别 hook，对整个 App 生效
+    // 同时存在 Page hook 和 App hook 时，优先执行 Page hook，返回值再交由 App hook 处
+    'before-setData': function (dirty) {
+      console.log('setData dirty: ', dirty);
+      return dirty;
+    }
+  },
+  globalData: {
+    token: null,
+    prehttp: apphttp,
+    preUrl: apphttp + '/app'
+  },
+
+  onLaunch() {
+    let _this = this;
+    // 初始化图片链接
+    console.log(this.$options, 233444)
+    this.$options.store.dispatch({
+      type: SETIMGHTTP,
+      payload: _this.$options.globalData.prehttp
+    });
+  },
+
+  methods: {
+  }
+});
+</script>
+<config>
+{
+    pages: [
+      'pages/index'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    }
+}
+</config>

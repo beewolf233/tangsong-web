@@ -3,8 +3,13 @@ import { mongoDB } from '../config'
 const options = {
     autoReconnect: true
 };
-const DB_URL = 'mongodb://' + mongoDB.user + ':' + mongoDB.pwd + '@'+
-mongoDB.host + ':' + mongoDB.port + '/' + mongoDB.db;
+let DB_URL;
+if(mongoDB.user && mongoDB.user.length > 0) {
+    DB_URL = 'mongodb://' + mongoDB.user + ':' + mongoDB.pwd + '@'+
+    mongoDB.host + ':' + mongoDB.port + '/' + mongoDB.db;
+} else {
+    DB_URL = 'mongodb://' + mongoDB.host + ':' + mongoDB.port + '/' + mongoDB.db;
+}
 // const DB_URL = 'mongodb://localhost:27017/local';
 module.exports = {
     connect: ()=> {            

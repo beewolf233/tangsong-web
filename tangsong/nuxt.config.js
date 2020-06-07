@@ -2,6 +2,9 @@
 const PostCompilePlugin = require('webpack-post-compile-plugin');
 const TransformModulesPlugin = require('webpack-transform-modules-plugin');
 // const TransformEs2015MdulesPlugin = require('babel-plugin-transform-es2015-modules-commonjs');
+// 设置反向代理
+const proxy = require('./proxy');
+console.log(proxy, 23333)
 module.exports = {
   mode: 'universal',
   /*
@@ -104,20 +107,5 @@ module.exports = {
       // new TransformEs2015MdulesPlugin()
     ]
   },
-  proxy: [
-    ['/app', { 
-      // target: 'http://localhost:1008/', // 这里写的是访问接口的域名和端口号
-      target: 'http://47.93.148.144:1008/', // 这里写的是访问接口的域名和端口号
-      pathRewrite: { // 重命名
-        '^/apis': ''
-      } 
-    }],
-    ['/tangsongimg', {
-      // target: 'http://localhost:1008/tangsongimg', // 这里写的是访问接口的域名和端口号
-      target: 'http://47.93.148.144:1008/tangsongimg', // 这里写的是访问接口的域名和端口号
-      pathRewrite: { // 重命名
-        '^/tangsongimg': ''
-      }
-    }]
-  ]
+  proxy: proxy
 }
