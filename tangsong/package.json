@@ -40,7 +40,7 @@
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "lib-flexible": "^0.3.2",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nodemon": "^1.18.9",
     "postcss-pxtorem": "^5.1.1",
     "sass": "^1.26.2",
