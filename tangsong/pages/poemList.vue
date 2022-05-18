@@ -7,8 +7,8 @@
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
       <PoemList :poemList="poemist" v-if="poemist"/>
-      <div 
-        v-if="(poemist && poemist.length === 0)" 
+      <div
+        v-if="(poemist && poemist.length === 0)"
         class="no_order_tips">
         <span class="no_order_img"/>
         <span>暂无进出门记录</span>
@@ -56,20 +56,18 @@ export default {
       InfiniteLoading
     },
     created: function () {
-        console.log(4444);
         // this.fetchpoemList('pulling down');
     },
     mounted: function(){
-        console.log(22333);
         // this.fetchpoemList('pulling down');
     },
     methods: {
         // onPullingDown: function () {
         //     this.pageNum = 1;
-        //     this.fetchpoemList('pulling down');      
+        //     this.fetchpoemList('pulling down');
         // },
         // onPullingUp: function () {
-        //     this.fetchpoemList('pulling up');          
+        //     this.fetchpoemList('pulling up');
         // },
         infiniteHandler: function($state){
             this.fetchpoemList('pulling up').then((res)=>{
@@ -87,11 +85,11 @@ export default {
                     forbidClick: true
                 });
                 this.$axios.post(`app/poemlist`, {
-                    pageSize: this.pageSize, 
+                    pageSize: this.pageSize,
                     pageNum: this.pageNum})
                     .then(response => {
                         this.$toast.clear();
-                        if (response.recode === 200 && response.data && 
+                        if (response.recode === 200 && response.data &&
                         response.data.list) {
                             this.pageNum = response.data.list.length > 0 ? this.pageNum + 1 : this.pageNum;
                             let poemlist = this.poemlist || [];
@@ -112,11 +110,11 @@ export default {
               forbidClick: true
             });
             this.$axios.post(`app/poemlist`, {
-              pageSize: this.pageSize, 
+              pageSize: this.pageSize,
               pageNum: this.pageNum})
               .then(response => {
                   this.$toast.clear();
-                  if (response.recode === 200 && response.data && 
+                  if (response.recode === 200 && response.data &&
                   response.data.list) {
                       this.pageNum = response.data.list.length > 0 ? this.pageNum + 1 : this.pageNum;
                       if(response.data.list.length < this.pageSize){

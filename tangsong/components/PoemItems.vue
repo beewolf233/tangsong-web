@@ -1,7 +1,7 @@
 <template>
   <div class="poem-info">
     <div
-      class="poem-item" 
+      class="poem-item"
       v-for="(item, index) in poemList"
       :key="index"
       @click="goPoemDetail(item, index)">
@@ -40,8 +40,6 @@ export default {
   },
   methods: {
       goPoemDetail(item, index){
-        console.log(this);
-        console.log(this.props);
         let { poemState, poemQuery } = this;
         if (poemState === 'single') {
           this.$router.push({ path: `/poemdetail`,query: { poemState, id: item._id }})

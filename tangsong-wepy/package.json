@@ -16,12 +16,13 @@
   "author": "biliangjing-tf <1710615975@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "@wepy/core": "^2.0.0-alpha.16",
     "@wepy/redux": "^2.0.1",
+    "hanzi-writer-miniprogram": "^1.1.0",
+    "miniprogram-slide-view": "0.0.3",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
-    "redux-promise": "^0.6.0",
-    "@wepy/core": "^2.0.0-alpha.16",
-    "miniprogram-slide-view": "0.0.3"
+    "redux-promise": "^0.6.0"
   },
   "devDependencies": {
     "@wepy/cli": "^2.0.0-alpha.28",

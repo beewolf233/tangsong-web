@@ -164,7 +164,7 @@ module.exports.getTime = getTime;
       }
     },
 
- 
+
 
     mixins: [testMixin],
 
@@ -287,7 +287,7 @@ module.exports.getTime = getTime;
 
     created () {
       let self = this
-      self.currentTime = +new Date(); 
+      self.currentTime = +new Date();
 
       self.setTimeoutTitle = '标题三秒后会被修改';
       setTimeout(() => {

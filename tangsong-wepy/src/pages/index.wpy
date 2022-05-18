@@ -19,8 +19,8 @@
       overflow: auto;
       padding: 40rpx;
       box-sizing: border-box;
-      writing-mode: vertical-rl;/*从左向右 从右向左是 writing-mode: vertical-rl;*/  
-      writing-mode: tb-lr;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/  
+      writing-mode: vertical-rl;/*从左向右 从右向左是 writing-mode: vertical-rl;*/
+      writing-mode: tb-lr;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/
     }
     .poem-titleauther{
       display: flex;
@@ -151,7 +151,7 @@
       height: 60rpx;
       border-radius: 50%;
       // background: url(~assets/img/icon_gonext.png) no-repeat center center #144a74;
-      background-size: 32rpx 32rpx; 
+      background-size: 32rpx 32rpx;
       color: #d0bd92;
       font-size: 12rpx;
       margin: 20rpx 0;
@@ -185,7 +185,8 @@
       </view>
       <view class="poemwrite-wenzi-box">
         <view class="poemwrite-wenzi-inner" wx:if="{{!poemend}}">
-          <view wx:if="wenziNow" bindtouchend="goNextBihua">
+          <hanzi-writer-view id="hz-writer" width="300" height="300" />
+          <!-- <view wx:if="wenziNow" bindtouchend="goNextBihua">
             <image
               wx:if="{{imgpre}}"
               src="{{imgpre + wenziNow.backpic[0].url}}"  class="poemwrite-wenzi-back"></image>
@@ -195,7 +196,7 @@
               class="poemwrite-wenzi-bihua {{writeIndex<index?'notwrite':''}} {{writeIndex===index?'writing':''}} {{writeIndex>index?'writed':''}}"
               wx:for="{{ wenziNow.pic }}" wx:for-index="index" wx:key="index"
             ></image>
-          </view>
+          </view> -->
         </view>
         <div class="poemwreite-tip" wx:if="{{poemend}}">
           <div>诗歌写完了，佩服佩服!!</div>
@@ -204,7 +205,7 @@
         </div>
       </view>
     </view>
-    
+
     <view class="poem-trangle" v-if="poem&&poemState==='list'">
       <view class="poem-trangle-btn poem-trangle-up" @click="getPoem('up')">
       </view>
@@ -271,7 +272,7 @@
           }
         }
       },
-      
+
       checkWenzi() {
         let getStr = this.poem.traditionContent[this.startIndex - 1];
         let reg = /^[\u4E00-\u9FA5\uF900-\uFA2D]+$/g;
@@ -303,7 +304,6 @@
             }
           })
         } else {
-          console.log(this.poem.traditionContent.length, this.nextIndex)
           if (this.poem.traditionContent.length <= this.nextIndex) {
             console.log('诗歌结束了')
             this.wenziNext = null
@@ -347,7 +347,7 @@
         .catch((e) => {
         })
       },
-      
+
       getPoemInfo() {
         post(this.$app.$options.globalData.preUrl + this.apiName, this.params)
         .then((res) => {
@@ -426,12 +426,22 @@
       };
       this.getPoemInfo();
 
+    },
+    onLoad: function() {
+      this.writerCtx = createHanziWriterContext({
+        id: 'hz-writer',
+        character: '你',
+        page: this,
+      });
+
+      // You can call any normal HanziWriter method here
+      this.writerCtx.loopCharacterAnimation();
     }
   });
 </script>
 <config>
 {
     navigationBarTitleText: '繁文詞貼',
-    disableScroll: true
+    disableScroll: true,
 }
 </config>

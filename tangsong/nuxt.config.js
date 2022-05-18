@@ -4,7 +4,6 @@ const TransformModulesPlugin = require('webpack-transform-modules-plugin');
 // const TransformEs2015MdulesPlugin = require('babel-plugin-transform-es2015-modules-commonjs');
 // 设置反向代理
 const proxy = require('./proxy');
-console.log(proxy, 23333)
 module.exports = {
   mode: 'universal',
   /*
@@ -56,7 +55,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
- 
+
   modules: [
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',

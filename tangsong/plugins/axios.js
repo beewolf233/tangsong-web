@@ -2,7 +2,6 @@ import { Toast } from 'vant';
 export default function ({ $axios, redirect }) {
     // const $axios = app.$axios
     $axios.onRequest(config => {
-        console.log('Making request to ' + config.url)
     })
     // 返回回调
     $axios.onResponse((response) => {
