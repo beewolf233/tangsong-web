@@ -25,7 +25,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
-    "mongoose": "^5.9.3",
+    "mongoose": "^5.13.15",
     "multiparty": "^4.2.1",
     "path": "^0.12.7",
     "pug": "^2.0.3"
